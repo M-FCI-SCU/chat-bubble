@@ -1,0 +1,32 @@
+.bubble-container{
+    direction: ltr;
+    max-width: 80%;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.bubble-container-inbound{
+    align-self: flex-start;
+}
+
+.bubble-container-outbound{
+    align-self: flex-end;
+}
+
+.bubble-message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.bubble-message-outbound {
+    background-color: #E2FFD8;
+    
+}
+
+.bubble-message-inbound {
+    background-color: white;
+   
+}

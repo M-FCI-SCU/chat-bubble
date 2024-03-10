@@ -1,0 +1,27 @@
+.input-container {
+    position: relative;
+    width: 85%;
+    margin: 5px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px 42px 12px 12px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.button-icons-container{
+    position: absolute;
+    display: flex;
+    right: 10px;
+    top: 5px;
+    bottom: 0;
+
+}
+
+.button-icon {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
