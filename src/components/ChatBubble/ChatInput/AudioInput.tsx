@@ -36,14 +36,14 @@ export default function AudioRecorder({ onChange }: AudioRecorderProps) {
         <>
             {
                 recording ?
-                    <button onClick={stopRecording} className="button-icon">
+                    <button type="button" onClick={stopRecording} className="button-icon">
                         <div style={{ display: "flex", alignItems: "center" }}>
                             <img src={Pause} width={25} height={25} />
                             <Timer isActive={recording} />
                         </div>
                     </button>
                     :
-                    <button onClick={startRecording} className="button-icon">
+                    <button type="button" onClick={startRecording} className="button-icon">
                         <img src={Microphone} width={25} height={25} />
                     </button>
             }

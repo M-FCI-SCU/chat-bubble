@@ -40,6 +40,10 @@ export default function ChatInput({ onSend }: ChatInputProps) {
     }
 
     return (
+            <form style={{width: "100%",}} onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+                sendMessageHandler({ type: MessageT.TEXT, content: text });
+            }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
             <div className="input-container">
                 <input value={text} onChange={changeTectHandler} type="text" placeholder="Type your message here..." />
@@ -60,11 +64,12 @@ export default function ChatInput({ onSend }: ChatInputProps) {
             </div>
             <button
                 className="button-icon"
-                onClick={() => sendMessageHandler({ type: MessageT.TEXT, content: text })}
+                type="submit"
             >
                 <img src={Send} width={25} height={25} />
             </button>
         </div>
+            </form>
 
     )
 }
