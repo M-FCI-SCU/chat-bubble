@@ -60,7 +60,6 @@ export default function ChatInput({ onSend }: ChatInputProps) {
             </div>
             <button
                 className="button-icon"
-                type="submit"
                 onClick={() => sendMessageHandler({ type: MessageT.TEXT, content: text })}
             >
                 <img src={Send} width={25} height={25} />
