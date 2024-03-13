@@ -15,6 +15,7 @@ type ChatContainerProps = {
   chatMessagesContainerStyle?: React.CSSProperties;
   direction?: "rtl" | "ltr";
   customMessageTypes?: { [key: string]: (message: Message) => JSX.Element }
+  customInputs?: JSX.Element[]
 }
 
 export default function ChatContainer({
@@ -27,7 +28,8 @@ export default function ChatContainer({
   onClose,
   chatMessagesContainerStyle,
   direction,
-  customMessageTypes
+  customMessageTypes,
+  customInputs
 }: React.PropsWithChildren<ChatContainerProps>) {
 
   const [isMobile] = useIsMobile()
@@ -70,7 +72,7 @@ export default function ChatContainer({
         <ChatHeader avatar={avatar} title={title} onClose={onClose} />
         <ChatMessages messages={messages} currentUserId={currentUserId} customMessageTypes={customMessageTypes} />
         <div style={{ marginTop: "auto" }}></div>
-        <ChatInput onSend={onSend} />
+        <ChatInput customInputs={customInputs} onSend={onSend} />
       </div>
     </div>
   )

@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { ChatBubble } from './components'
 import { CURRENT_USER } from './types/constant-vars'
+import VideoInput from './VideoInput'
 
+type ChatMessageT = Message & { type: "VIDEO" | "FILE" }
 
 function App() {
 
@@ -69,8 +71,7 @@ function App() {
 
   ])
 
-  const handleSendMessage = (message: Message) => {
-    message.id = messages?.length + 1
+  const handleSendMessage = (message: ChatMessageT) => {
     setMessages([...messages, message])
   }
 
@@ -81,11 +82,20 @@ function App() {
         title="Chat Title"
         color="#FCF5EB"
         messages={messages}
-        onSend={handleSendMessage}
+        onSend={(message) => handleSendMessage(message as ChatMessageT)}
         sender={CURRENT_USER}
+        customInputs={[
+          <VideoInput key="video" onChange={(content) => handleSendMessage({
+            id: new Date().getTime(),
+            type: "VIDEO",
+            content: content,
+            user: CURRENT_USER
+          } as ChatMessageT
+          )} />
+        ]}
         customMessageTypes={{
-          "VIDEO": (message: Message) => <video src={message.content} height={150} width={250} controls style={{ objectFit: "contain" }} />,
-          "FILE": (message: Message) => <a href={message.content} download>Download File</a>
+          "VIDEO": (message: ChatMessageT) => <video src={message.content} height={150} width={250} controls style={{ objectFit: "contain" }} />,
+          "FILE": (message: ChatMessageT) => <a href={message.content} download>Download File</a>
         }}
       />
     </>

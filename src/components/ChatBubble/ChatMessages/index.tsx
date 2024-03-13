@@ -1,5 +1,6 @@
 import MessageBubble from "./MessageBubble";
 import "./ChatMessage.css"
+import { useEffect, useRef } from "react";
 
 type ChatMessageProps = {
   messages: Message[];
@@ -14,9 +15,20 @@ export default function ChatMessage({
 }: ChatMessageProps) {
 
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+      }, 50);
+    }
+  }, [messages]);
 
   return (
-    <div id="chat-messages-container" style={{ margin: 10, display: "flex", flexDirection: "column", overflow: "auto", scrollBehavior: "smooth" }}>
+    <div ref={containerRef} id="chat-messages-container" style={{ margin: 10, display: "flex", flexDirection: "column", overflow: "auto", scrollBehavior: "smooth" }}>
       {messages?.map((message) => (
         <MessageBubble
           message={message}

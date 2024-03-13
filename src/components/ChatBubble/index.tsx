@@ -13,6 +13,7 @@ type ChatBubbleProps = {
   chatMessagesContainerStyle?: React.CSSProperties;
   direction?: "rtl" | "ltr";
   customMessageTypes?: { [key: string]: (message: Message) => JSX.Element }
+  customInputs?: JSX.Element[]
 }
 
 export default function ChatBubble({
@@ -25,7 +26,8 @@ export default function ChatBubble({
   chatMessagesContainerStyle,
   messages,
   direction = "ltr",
-  customMessageTypes
+  customMessageTypes,
+  customInputs
 }: ChatBubbleProps) {
 
   const [open, setOpen] = useState(false)
@@ -45,6 +47,7 @@ export default function ChatBubble({
             onClose={() => setOpen(false)}
             direction={direction}
             customMessageTypes={customMessageTypes}
+            customInputs={customInputs}
           />
           :
           <div

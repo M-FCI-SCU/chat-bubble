@@ -7,20 +7,12 @@ import ImageInput from "./ImageInput"
 
 type ChatInputProps = {
     onSend: (message: Message) => void
+    customInputs?: JSX.Element[]
 }
 
-export default function ChatInput({ onSend }: ChatInputProps) {
-
+export default function ChatInput({ onSend, customInputs }: ChatInputProps) {
     const [text, setText] = useState<string>("")
 
-    const scrollDown = () => {
-        const chatMessagesContainer = document.getElementById("chat-messages-container");
-        setTimeout(() => {
-            if (chatMessagesContainer) {
-                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight + 1000;
-            }
-        }, 50);
-    }
 
     const changeTectHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value)
@@ -35,7 +27,6 @@ export default function ChatInput({ onSend }: ChatInputProps) {
                 user: CURRENT_USER
             })
             setText('')
-            scrollDown()
         }
     }
 
@@ -51,15 +42,14 @@ export default function ChatInput({ onSend }: ChatInputProps) {
                         <ImageInput
                             onChange={(data) => {
                                 sendMessageHandler({ type: MessageT.IMAGE, content: data })
-                                scrollDown()
                             }}
                         />
                         <AudioInput
                             onChange={(data) => {
                                 sendMessageHandler({ type: MessageT.VOICE, content: data })
-                                scrollDown()
                             }}
                         />
+                        {customInputs}
                     </div>
                 </div>
                 <button
