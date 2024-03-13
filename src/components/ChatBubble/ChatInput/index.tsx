@@ -40,36 +40,36 @@ export default function ChatInput({ onSend }: ChatInputProps) {
     }
 
     return (
-            <form style={{width: "100%",}} onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-                e.preventDefault();
-                sendMessageHandler({ type: MessageT.TEXT, content: text });
-            }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
-            <div className="input-container">
-                <input value={text} onChange={changeTectHandler} type="text" placeholder="Type your message here..." />
-                <div className="button-icons-container">
-                    <ImageInput
-                        onChange={(data) => {
-                            sendMessageHandler({ type: MessageT.IMAGE, content: data })
-                            scrollDown()
-                        }}
-                    />
-                    <AudioInput
-                        onChange={(data) => {
-                            sendMessageHandler({ type: MessageT.VOICE, content: data })
-                            scrollDown()
-                        }}
-                    />
+        <form style={{ width: "100%", }} onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+            sendMessageHandler({ type: MessageT.TEXT, content: text });
+        }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+                <div className="input-container">
+                    <input value={text} onChange={changeTectHandler} type="text" placeholder="Type your message here..." />
+                    <div className="button-icons-container">
+                        <ImageInput
+                            onChange={(data) => {
+                                sendMessageHandler({ type: MessageT.IMAGE, content: data })
+                                scrollDown()
+                            }}
+                        />
+                        <AudioInput
+                            onChange={(data) => {
+                                sendMessageHandler({ type: MessageT.VOICE, content: data })
+                                scrollDown()
+                            }}
+                        />
+                    </div>
                 </div>
+                <button
+                    className="button-icon"
+                    type="submit"
+                >
+                    <img src={Send} width={25} height={25} />
+                </button>
             </div>
-            <button
-                className="button-icon"
-                type="submit"
-            >
-                <img src={Send} width={25} height={25} />
-            </button>
-        </div>
-            </form>
+        </form>
 
     )
 }

@@ -4,11 +4,13 @@ import "./ChatMessage.css"
 type ChatMessageProps = {
   messages: Message[];
   currentUserId: string;
+  customMessageTypes?: { [key: string]: (message: Message) => JSX.Element }
 }
 
 export default function ChatMessage({
   messages,
-  currentUserId
+  currentUserId,
+  customMessageTypes
 }: ChatMessageProps) {
 
 
@@ -16,7 +18,11 @@ export default function ChatMessage({
   return (
     <div id="chat-messages-container" style={{ margin: 10, display: "flex", flexDirection: "column", overflow: "auto", scrollBehavior: "smooth" }}>
       {messages?.map((message) => (
-        <MessageBubble message={message} outBound={currentUserId === message?.user?.id} />
+        <MessageBubble
+          message={message}
+          outBound={currentUserId === message?.user?.id}
+          customMessageTypes={customMessageTypes}
+        />
       ))}
     </div>
   )

@@ -4,10 +4,10 @@ import { Avatar } from "../common";
 type MessageBubbleProps = {
     message: Message;
     outBound: boolean;
-
+    customMessageTypes?: { [key: string]: (message: Message) => JSX.Element }
 }
 
-export default function MessageBubble({ message, outBound }: MessageBubbleProps) {
+export default function MessageBubble({ message, outBound, customMessageTypes }: MessageBubbleProps) {
 
     const Content = ({ message }: { message: Message }) => {
         switch (message.type) {
@@ -24,7 +24,7 @@ export default function MessageBubble({ message, outBound }: MessageBubbleProps)
                     </audio>
                 );
             default:
-                return <p>Unsupported message type</p>;
+                return customMessageTypes && customMessageTypes[message.type] ? customMessageTypes[message.type](message) : <p>Unsupported message type</p>;
         }
     };
 
